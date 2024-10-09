@@ -1,12 +1,9 @@
 class TasksController < ApplicationController
+  before_action :determine_variant
+
   def index
     @tasks = Task.all
     render :index
-  end
-
-  def show
-    @task = Task.find(params.expect(:id))
-    render :show
   end
 
   def new
@@ -23,7 +20,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to @task, notice: "Task was successfully created."
+      redirect_to tasks_path, notice: "Task was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +29,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params.expect(:id))
     if @task.update(task_params)
-      redirect_to @task, notice: "Task was successfully updated.", status: :see_other
+      redirect_to tasks_path, notice: "Task was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -45,6 +42,10 @@ class TasksController < ApplicationController
   end
 
   private
+
+  def determine_variant
+    request.variant = params.expect(:variant).to_sym
+  end
 
   def task_params
     params.expect(task: [ :title, :description, :done ])

@@ -21,6 +21,12 @@
   </head>
 
   <body>
+    <% if notice.present? %>
+      <div class="absolute top-0 right-0 bg-green-50 text-green-500 px-3 py-2 font-medium rounded-lg" id="notice">
+        <%= notice %>
+      </div>
+    <% end %>
+
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
