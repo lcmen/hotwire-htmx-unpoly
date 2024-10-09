@@ -24,12 +24,6 @@
       <%= yield %>
     </main>
 
-    <dialog
-      class="rounded-lg shadow-lg shadow-gray-500 bg-white p-5 w-1/2"
-      data-controller="modal"
-      data-action="turbo:frame-load->modal#open turbo:submit-end->modal#close click->modal#backdropClose"
-    >
-      <%= turbo_frame_tag "modal" %>
-    </dialog>
+    <%= render partial: "shared/modal" %>
   </body>
 </html>
