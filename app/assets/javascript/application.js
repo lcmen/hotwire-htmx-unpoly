@@ -9,3 +9,7 @@ application.debug = false
 eagerLoadControllersFrom("controllers", application)
 
 window.Stimulus   = application
+
+Turbo.StreamActions.redirect = function () {
+  Turbo.visit(this.target);
+};

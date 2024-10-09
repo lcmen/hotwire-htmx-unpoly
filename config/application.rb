@@ -13,6 +13,7 @@ module HotwireHtmxUnpoly
     config.load_defaults 8.0
     config.autoload_lib(ignore: %w[assets tasks])
     config.importmap.cache_sweepers << Rails.root.join("app/assets/javascript")
+    config.turbo.draw_routes = false
     config.generators.system_tests = nil
   end
 end
