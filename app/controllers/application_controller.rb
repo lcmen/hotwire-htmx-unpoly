@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
+  layout proc { htmx_request? ? "htmx" : "application" }
+
+  private
+
+  def htmx_request?
+    request.env["HTTP_HX_REQUEST"].present?
+  end
+
   def redirect_to(path, **kwargs)
     respond_to do |format|
       format.html { super }

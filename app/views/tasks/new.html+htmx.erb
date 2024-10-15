@@ -1,7 +1,7 @@
 <div class="mx-auto md:w-2/3 w-full">
-  <%= turbo_frame_tag "modal" do %>
+  <div id="<%= dom_id(@task) %>">
     <h1 class="font-bold text-4xl">New task</h1>
 
     <%= render "form", task: @task %>
-  <% end %>
+  </div>
 </div>
