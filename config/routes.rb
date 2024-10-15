@@ -5,9 +5,9 @@ Rails.application.routes.draw do
     resources :tasks, except: :show
   end
 
-  get "hotwire", to: redirect("/hotwire/tasks", status: 302)
-  get "htmx", to: redirect("/htmx/tasks", status: 302)
-  get "unpoly", to: redirect("/unpoly/tasks", status: 302)
+  get "hotwire", to: redirect("/hotwire/tasks", status: 302), as: :hotwire
+  get "htmx", to: redirect("/htmx/tasks", status: 302), as: :htmx
+  get "unpoly", to: redirect("/unpoly/tasks", status: 302), as: :unpoly
 
-  root to: redirect("/hotwire/tasks", status: 302)
+  root to: "application#index"
 end

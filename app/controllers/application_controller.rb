@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   layout proc { htmx_request? ? "htmx" : "application" }
 
+  def index
+    render :index, layout: "root"
+  end
+
   private
 
   def htmx_request?
