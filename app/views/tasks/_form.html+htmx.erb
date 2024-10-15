@@ -1,21 +1,13 @@
 <%= form_with model: task, class: "contents",
   data: {
-    hx_target: '#main',
-    (task.persisted? ? :hx_patch : :hx_post) => task_submit_path(task, variant: :htmx)
+    hx_form_method(task) => task_submit_path(task, variant: :htmx),
+    hx_disinherit: 'hx-target hx-select',
+    hx_target: "##{dom_id(task)}",
+    hx_select: "##{dom_id(task)}",
   },
-  html: { '@htmx:after-request': "$event.detail.successful && $dispatch('modal-close')" },
   url: task_submit_path(task, variant: :htmx) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "shared/errors", locals: { task: task } %>
 
   <div class="my-5">
     <%= form.label :title %>
@@ -32,6 +24,6 @@
   <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
 
   <%= link_to "Cancel", tasks_path(variant: :htmx),
-    class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
-    %>
+    class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium",
+    data: { hx_target: '#main' } %>
 <% end %>

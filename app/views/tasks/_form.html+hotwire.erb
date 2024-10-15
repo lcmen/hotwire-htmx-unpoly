@@ -1,15 +1,5 @@
 <%= form_with(model: task, class: "contents", url: task_submit_path(task, variant: :hotwire)) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "shared/errors", locals: { task: task } %>
 
   <div class="my-5">
     <%= form.label :title %>

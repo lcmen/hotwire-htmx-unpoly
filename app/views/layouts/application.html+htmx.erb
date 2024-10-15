@@ -1,25 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= (content_for?(:title) ? "#{content_for(:title)} // " : "") + "Hotwire" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
+<% content_for(:content) do %>
+  <main id="main" class="container mx-auto mt-28 px-5 flex">
+    <%= yield %>
+  </main>
 
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <dialog
+    id="modal"
+    class="rounded-lg shadow-100vw bg-white p-5 w-1/2 [&[open]]:animate-fade-in [&[closing]&[open]]:animate-fade-out"
+    x-data="modal"
+    @modal-close="close"
+    @htmx:after-request="closeIfSuccessful"
+    @htmx:after-swap="show"
+  >
+  </dialog>
+<% end %>
 
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags("htmx") %>
-  </head>
-
-  <body hx-boost="true" hx-headers='{"X-CSRF-Token": "<%= form_authenticity_token %>"}'>
-    <%= render partial: "shared/flash" %>
-
-    <main id="main" class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
-
-    <%= render partial: "shared/modal" %>
-  </body>
-</html>
+<%= render template: "layouts/htmx" %>

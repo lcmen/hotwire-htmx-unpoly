@@ -1,11 +1,5 @@
 export default function Modal() {
   return {
-    open: false,
-    init() {
-      this.$watch('open', value => {
-        value ? this.show() : this.close();
-      })
-    },
     show() {
       this.$el.showModal();
     },
@@ -18,6 +12,9 @@ export default function Modal() {
         this.$el.removeAttribute("closing")
         this.$el.close()
       })
-    }
+    },
+    closeIfSuccessful(event) {
+      if (event.detail.xhr.status < 400) this.close();
+    },
   };
 }

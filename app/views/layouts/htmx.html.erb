@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= (content_for?(:title) ? "#{content_for(:title)} // " : "") + "Hotwire" %></title>
+    <title><%= (content_for?(:title) ? "#{content_for(:title)} // " : "") + "HTMX" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -13,9 +13,9 @@
     <%= javascript_importmap_tags("htmx") %>
   </head>
 
-  <body hx-boost="true" hx-headers='{"X-CSRF-Token": "<%= form_authenticity_token %>"}'>
+  <body hx-boost="true" hx-target="#main" hx-headers='{"X-CSRF-Token": "<%= form_authenticity_token %>"}'>
     <%= render partial: "shared/flash" %>
 
-    <%= yield %>
+    <%= content_for?(:content) ? yield(:content) : yield %>
   </body>
 </html>
