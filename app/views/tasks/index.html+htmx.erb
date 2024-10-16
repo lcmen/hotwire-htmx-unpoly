@@ -8,7 +8,8 @@
       data: {
         hx_get: new_task_path,
         hx_push_url: true,
-        hx_select: "##{dom_id(Task.new)}",
+        hx_select: "#new-task",
+        hx_swap: 'innerHTML',
         hx_target: '#modal',
       } %>
   </div>
@@ -34,7 +35,8 @@
               data: {
                 hx_get: edit_task_path(task, variant: :htmx),
                 hx_push_url: true,
-                hx_select: "##{dom_id(task)}",
+                hx_select: "#edit-task",
+                hx_swap: 'innerHTML',
                 hx_target: '#modal',
               } %>
             <%= link_to "Destroy", task_path(task, variant: :htmx),
@@ -43,7 +45,6 @@
                 hx_confirm: "Are you sure?",
                 hx_delete: task_path(task, variant: :htmx),
                 hx_select: '#tasks',
-                hx_swap: 'outerHTML',
                 hx_target: '#tasks',
               } %>
           </td>

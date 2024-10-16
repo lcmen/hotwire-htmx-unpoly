@@ -1,7 +1,7 @@
 <% content_for :title, "Edit Task" %>
 
 <div class="mx-auto md:w-2/3 w-full">
-  <div id="<%= dom_id(@task) %>">
+  <div id="edit-task">
     <h1 class="font-bold text-4xl">Editing task</h1>
 
     <%= render "form", task: @task %>

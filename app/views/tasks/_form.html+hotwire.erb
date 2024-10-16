@@ -1,4 +1,5 @@
-<%= form_with(model: task, class: "contents", url: task_submit_path(task, variant: :hotwire)) do |form| %>
+<%= form_with model: task, class: "contents",
+  url: task_submit_path(task, variant: :hotwire) do |form| %>
   <%= render partial: "shared/errors", locals: { task: task } %>
 
   <div class="my-5">
@@ -15,5 +16,5 @@
 
   <%= link_to "Cancel", tasks_path(variant: :hotwire),
     class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium",
-    data: { action: 'modal#close', turbo_frame: '_top' } %>
+    data: { action: 'modal#close', 'modal-target': 'close', turbo_frame: '_top' } %>
 <% end %>

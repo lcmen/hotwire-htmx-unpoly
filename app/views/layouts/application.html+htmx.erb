@@ -1,17 +1,46 @@
-<% content_for(:content) do %>
-  <main id="main" class="container mx-auto mt-28 px-5 flex">
-    <%= yield %>
-  </main>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= (content_for?(:title) ? "#{content_for(:title)} // " : "") + "HTMX" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
 
-  <dialog
-    id="modal"
-    class="fixed top-[50vh] -translate-y-1/2 my-0 rounded-lg shadow-100vw bg-white p-5 w-1/2 [&[open]]:animate-fade-in [&[closing]&[open]]:animate-fade-out"
-    x-data="modal"
-    @modal-close="close"
-    @htmx:after-request="closeIfSuccessful"
-    @htmx:after-swap="show"
-  >
-  </dialog>
-<% end %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<%= render template: "layouts/htmx" %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags("htmx") %>
+  </head>
+
+  <body
+    hx-boost="true"
+    hx-target="#main"
+    hx-select="#main"
+    hx-swap="outerHTML"
+    hx-headers='{"X-CSRF-Token": "<%= form_authenticity_token %>"}'>
+
+    <div id="flash" hx-swap-oob="true">
+      <% if notice.present? %>
+        <div class="absolute top-0 right-0 bg-green-50 text-green-500 px-3 py-2 font-medium rounded-lg">
+          <%= notice %>
+        </div>
+      <% end %>
+    </div>
+
+    <main id="main" class="container mx-auto mt-28 px-5 flex">
+      <%= yield %>
+    </main>
+
+    <dialog
+      id="modal"
+      class="fixed top-[50vh] -translate-y-1/2 my-0 rounded-lg shadow-100vw bg-white p-5 w-1/2 [&[open]]:animate-fade-in [&[closing]&[open]]:animate-fade-out"
+      x-data="modal"
+      @click="closeIfOutside"
+      @modal-close="close"
+      @htmx:after-request="closeIfSuccessful"
+      @htmx:after-swap="show"
+    >
+    </dialog>
+  </body>
+</html>

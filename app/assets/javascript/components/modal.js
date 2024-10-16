@@ -1,7 +1,7 @@
 export default function Modal() {
   return {
     show() {
-      this.$el.showModal();
+      this.$el.showModal()
     },
     close() {
       this.$el.setAttribute("closing", "")
@@ -13,8 +13,13 @@ export default function Modal() {
         this.$el.close()
       })
     },
-    closeIfSuccessful(event) {
-      if (event.detail.xhr.status < 400) this.close();
+    closeIfOutside(event) {
+      if (this.$el.open && event.target.nodeName == "DIALOG") {
+        this.$refs.close ? this.$refs.close.click() : this.close()
+      }
     },
-  };
+    closeIfSuccessful(event) {
+      if (event.detail.xhr.status < 400) this.close()
+    },
+  }
 }
