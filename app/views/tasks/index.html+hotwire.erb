@@ -6,7 +6,7 @@
       <h1 class="font-bold text-4xl">Tasks</h1>
       <%= link_to "New task", new_task_path(variant: :hotwire),
         class: "items-center px-4 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500",
-        data: { turbo_action: "advance", turbo_frame: "modal" } %>
+        data: { turbo_frame: "modal" } %>
     </div>
 
     <table class="min-w-full divide-y divide-gray-200">
@@ -47,7 +47,7 @@
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
               <%= link_to "Edit", edit_task_path(task, variant: :hotwire),
                 class: "mr-3 inline-flex items-center px-4 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-                data: { turbo_action: "advance", turbo_frame: 'modal'} %>
+                data: { turbo_frame: 'modal'} %>
               <%= link_to "Destroy", task_path(task, variant: :hotwire),
                 class: "inline-flex items-center px-4 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500",
                 data: {

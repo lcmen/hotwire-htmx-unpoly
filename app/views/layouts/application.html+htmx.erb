@@ -18,8 +18,8 @@
     hx-target="#main"
     hx-select="#main"
     hx-swap="outerHTML"
-    hx-headers='{"X-CSRF-Token": "<%= form_authenticity_token %>"}'>
-
+    hx-headers='{"X-CSRF-Token": "<%= form_authenticity_token %>"}'
+  >
     <div id="flash" hx-swap-oob="true">
       <% if notice.present? %>
         <div class="absolute top-0 right-0 bg-green-50 text-green-500 px-3 py-2 font-medium rounded-lg">
@@ -37,7 +37,6 @@
       class="fixed top-[50vh] -translate-y-1/2 my-0 rounded-lg shadow-100vw bg-white p-5 w-1/2 [&[open]]:animate-fade-in [&[closing]&[open]]:animate-fade-out"
       x-data="modal"
       @click="closeIfOutside"
-      @modal-close="close"
       @htmx:after-request="closeIfSuccessful"
       @htmx:after-swap="show"
     >
