@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= (content_for?(:title) ? "#{content_for(:title)} // " : "") + "Unpoly" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <script src="https://cdn.jsdelivr.net/npm/unpoly@3.9.2/unpoly.js"></script>
+    <%= javascript_importmap_tags("unpoly-config") %>
+  </head>
+
+  <body>
+    <div id="flash" up-hungry="true">
+      <% if notice.present? %>
+        <div class="absolute top-0 right-0 bg-green-50 text-green-500 px-3 py-2 font-medium rounded-lg">
+          <%= notice %>
+        </div>
+      <% end %>
+    </div>
+
+    <main class="container mx-auto mt-28 px-5">
+      <%= yield %>
+    </main>
+  </body>
+</html>

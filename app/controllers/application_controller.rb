@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   def index
-    render :index, layout: "root"
+    render :index, layout: false
   end
 
   private
@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.html do |variant|
         variant.htmx { htmx_redirect(path, **kwargs) }
+        variant.unpoly { super }
         variant.none { super }
       end
       format.turbo_stream { turbo_redirect(path, **kwargs) }

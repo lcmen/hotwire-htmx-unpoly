@@ -1,0 +1,9 @@
+<% content_for :title, "New Task" %>
+
+<div class="mx-auto md:w-2/3 w-full" up-main="root">
+  <div id="new-task" up-main="modal">
+    <h1 class="font-bold text-4xl">New task</h1>
+
+    <%= render "form", task: @task %>
+  </div>
+</div>
