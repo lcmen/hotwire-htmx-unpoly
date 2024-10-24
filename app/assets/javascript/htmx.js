@@ -1,11 +1,11 @@
-import alpine from 'alpinejs';
+import Alpine from 'alpinejs';
 import htmx from 'htmx.org';
 import modal from 'components/modal';
 
 Alpine.data('modal', modal)
 Alpine.start()
 
-window.Alpine = alpine
+window.Alpine = Alpine
 window.htmx = htmx
 
 document.body.addEventListener('htmx:beforeSwap', function(evt) {

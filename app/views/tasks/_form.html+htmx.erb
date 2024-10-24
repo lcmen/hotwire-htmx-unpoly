@@ -1,9 +1,8 @@
 <%= form_with model: task, class: "contents",
   data: {
     hx_form_method(task) => task_submit_path(task, variant: :htmx),
-    hx_disinherit: 'hx-target hx-select',
-    hx_target: "##{dom_id(task)}",
-    hx_select: "##{dom_id(task)}",
+    hx_target: "#tasks",
+    hx_select: "#tasks"
   },
   url: task_submit_path(task, variant: :htmx) do |form| %>
 
@@ -25,6 +24,6 @@
 
   <%= link_to "Cancel", tasks_path(variant: :htmx),
     class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium",
-    data: { hx_target: '#main' },
+    data: { hx_target: '#main', hx_select: '#main' },
     'x-ref': 'close' %>
 <% end %>
