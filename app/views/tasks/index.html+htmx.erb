@@ -4,7 +4,7 @@
   <div class="mb-3 flex justify-between items-center">
     <h1 class="font-bold text-4xl">Tasks</h1>
     <%= link_to "New task", new_task_path(variant: :htmx),
-      class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium",
+      class: "items-center px-4 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500",
       data: {
         hx_get: new_task_path,
         hx_push_url: true,
@@ -14,24 +14,44 @@
       } %>
   </div>
 
-  <table id="tasks" class="table-fixed min-w-full">
-    <thead class="bg-gray-200">
+  <table id="tasks" class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50">
       <tr>
-        <th class="px-4 py-2 text-left text-gray-700">Status</th>
-        <th class="w-2/5 px-4 py-2 text-left text-gray-700">Title</th>
-        <th class="w-2/5 px-4 py-2 text-left text-gray-700">Description</th>
-        <th class="w-1/5 min-w-60 px-4 py-2 text-left text-gray-700"></th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+          Status
+        </th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+          Title
+        </th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+          Description
+        </th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+          Actions
+        </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="bg-white divide-y divide-gray-200">
       <% @tasks.each do |task| %>
-        <tr class="border-b">
-          <td class="px-4 py-2 text-gray-600"><%= task.done %></td>
-          <td class="px-4 py-2 text-gray-600"><%= task.title %></td>
-          <td class="px-4 py-2 text-gray-600"><%= task.description %></td>
-          <td class="px-4 py-2 text-gray-600 text-right">
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+              <%= task.done ? "Done" : "Pending" %>
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm font-medium text-gray-900">
+              <%= task.title %>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-500">
+              <%= task.description %>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
             <%= link_to "Edit", edit_task_path(task, variant: :htmx),
-              class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium",
+              class: "mr-3 inline-flex items-center px-4 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
               data: {
                 hx_get: edit_task_path(task, variant: :htmx),
                 hx_push_url: true,
@@ -40,7 +60,7 @@
                 hx_target: '#modal',
               } %>
             <%= link_to "Destroy", task_path(task, variant: :htmx),
-              class: "rounded-lg py-3 px-5 bg-red-600 text-white inline-block font-medium",
+              class: "inline-flex items-center px-4 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500",
               data: { 
                 hx_confirm: "Are you sure?",
                 hx_delete: task_path(task, variant: :htmx),
