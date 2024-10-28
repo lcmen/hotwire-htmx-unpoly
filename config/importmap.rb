@@ -1,10 +1,11 @@
 # Pin npm packages by running ./bin/importmap
 
+pin "hotwire-app"
+pin "htmx-app"
+pin "unpoly-app"
+
 pin "alpinejs"
-pin "hotwire"
-pin "htmx"
 pin "htmx.org"
-pin "unpoly-config"
 pin "@hotwired/turbo-rails", to: "turbo.min.js"
 pin "@hotwired/stimulus", to: "stimulus.min.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
