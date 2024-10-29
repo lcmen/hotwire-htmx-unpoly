@@ -1,7 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["close"]
   static values = {
     open: Boolean
   }
@@ -11,9 +10,7 @@ export default class extends Controller {
   }
 
   backdropClose(event) {
-    if (event.target.nodeName == "DIALOG") {
-      this.closeTarget ? this.closeTarget.click() : this.close()
-    }
+    if (event.target.nodeName == "DIALOG") this.close()
   }
 
   closeWithAnimation(event) {

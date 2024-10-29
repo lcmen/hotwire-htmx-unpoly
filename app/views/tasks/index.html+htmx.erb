@@ -7,7 +7,6 @@
       class: "items-center px-4 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500",
       data: {
         hx_get: new_task_path,
-        hx_push_url: true,
         hx_select: "#new-task",
         hx_swap: 'innerHTML',
         hx_target: '#modal',
@@ -54,7 +53,6 @@
               class: "mr-3 inline-flex items-center px-4 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
               data: {
                 hx_get: edit_task_path(task, variant: :htmx),
-                hx_push_url: true,
                 hx_select: "#edit-task",
                 hx_swap: 'innerHTML',
                 hx_target: '#modal',

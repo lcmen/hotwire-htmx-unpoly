@@ -14,9 +14,7 @@ export default function Modal() {
       })
     },
     closeIfOutside(event) {
-      if (this.$el.open && event.target.nodeName == "DIALOG") {
-        this.$refs.close ? this.$refs.close.click() : this.close()
-      }
+      if (this.$el.open && event.target.nodeName == "DIALOG") this.close()
     },
     closeIfSuccessful(event) {
       if (event.detail.xhr.status < 400) this.close()

@@ -1,6 +1,6 @@
 <%= form_with model: task,
   class: "contents",
-  html: { 'up-layer': 'parent', 'up-target': '#tasks', 'up-select': '#tasks' },
+  html: { 'up-layer': 'root', 'up-target': '#tasks', 'up-select': '#tasks' },
   url: task_submit_path(task, variant: :unpoly) do |form| %>
 
   <%= render partial: "shared/errors", locals: { task: task } %>
