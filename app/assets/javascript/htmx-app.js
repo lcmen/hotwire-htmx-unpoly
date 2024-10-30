@@ -1,12 +1,13 @@
 import Alpine from 'alpinejs';
-import htmx from 'htmx.org';
 import modal from 'components/modal';
+import 'htmx';
+import 'htmx-ext-head-support';
+import 'htmx-ext-preload';
 
 Alpine.data('modal', modal)
 Alpine.start()
 
 window.Alpine = Alpine
-window.htmx = htmx
 
 document.body.addEventListener('htmx:beforeSwap', function(evt) {
   // Allow 422 responses to swap as they are form validation errors

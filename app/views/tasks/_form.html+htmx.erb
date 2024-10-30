@@ -23,5 +23,6 @@
 
   <%= link_to "Cancel", tasks_path(variant: :htmx),
     class: "button ml-2 bg-gray-100 text-gray-500 hover:bg-gray-200 focus:ring-gray-500",
-    data: { hx_push_url: true, hx_select: '#main', hx_target: '#main' } %>
+    data: { hx_push_url: true, hx_select: '#main', hx_target: '#main' },
+    preload: 'mouseover' %>
 <% end %>

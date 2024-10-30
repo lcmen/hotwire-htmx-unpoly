@@ -10,30 +10,40 @@
       'up-main': 'modal' %>
   </div>
 
-  <table id="tasks" class="min-w-full divide-y divide-gray-200">
+  <table id="tasks" class="table-fixed min-w-full divide-y divide-gray-200">
     <thead class="bg-gray-50">
       <tr>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+        <th scope="col" class="w-1/12 px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
           Status
         </th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+        <th scope="col" class="w-4/12 px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
           Title
         </th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+        <th scope="col" class="w-6/12 px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
           Description
         </th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
+        <th scope="col" class="w-1/12 px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase">
           Actions
         </th>
       </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
       <% @tasks.each do |task| %>
-        <tr>
+        <tr id="<%= dom_id(task) %>">
           <td class="px-6 py-4 whitespace-nowrap">
-            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-              <%= task.done ? "Done" : "Pending" %>
-            </span>
+            <div class="flex items-center">
+              <% if task.done? %>
+                <%= link_to "✓", task_completion_path(task, variant: :unpoly),
+                  class: "w-5 h-5 inline-block bg-indigo-100 border border-indigo-500 rounded-md leading-none text-center text-lg",
+                  'up-method': :delete,
+                  'up-target': "##{dom_id(task)}" %>
+              <% else %>
+                <%= link_to " ", task_completion_path(task, variant: :unpoly),
+                  class: "w-5 h-5 inline-block border border-gray-300 rounded-md leading-none text-center text-lg hover:border-indigo-500 hover:bg-indigo-100",
+                  'up-method': :post,
+                  'up-target': "##{dom_id(task)}" %>
+              <% end %>
+            </div>
           </td>
           <td class="px-6 py-4 whitespace-nowrap">
             <div class="text-sm font-medium text-gray-900">

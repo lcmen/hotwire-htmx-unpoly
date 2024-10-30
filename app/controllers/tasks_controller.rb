@@ -1,19 +1,17 @@
 class TasksController < ApplicationController
-  before_action :determine_variant
-
   def index
     @tasks = Task.all
-    render :index
+    fresh_when @tasks
   end
 
   def new
     @task = Task.new
-    render :new
+    fresh_when @task
   end
 
   def edit
     @task = Task.find(params.expect(:id))
-    render :edit
+    fresh_when @task
   end
 
   def create
@@ -42,10 +40,6 @@ class TasksController < ApplicationController
   end
 
   private
-
-  def determine_variant
-    request.variant = params.expect(:variant).to_sym
-  end
 
   def task_params
     params.expect(task: [ :title, :description, :done ])

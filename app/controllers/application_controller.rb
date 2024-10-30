@@ -1,11 +1,17 @@
 class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
+  before_action :determine_variant
+
   def index
     render :index, layout: false
   end
 
   private
+
+  def determine_variant
+    request.variant = params[:variant].to_sym if params.key?(:variant)
+  end
 
   def redirect_to(path, **kwargs)
     respond_to do |format|
