@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   allow_browser versions: :modern
-
+  default_form_builder ApplicationFormBuilder
   before_action :determine_variant
 
   def index

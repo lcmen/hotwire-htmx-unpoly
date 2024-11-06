@@ -1,28 +1,25 @@
-<%= form_with model: task, class: "contents",
-  data: {
-    hx_form_method(task) => task_submit_path(task, variant: :htmx),
-    hx_disinherit: 'hx-select hx-target',
-    hx_target: 'this',
-    hx_select: 'form'
-  },
+<%= form_with model: task,
+  data: { hx_form_method(task) => task_submit_path(task, variant: :htmx),
+          hx_disinherit: 'hx-select hx-target',
+          hx_target: 'this',
+          hx_select: 'form' },
   url: task_submit_path(task, variant: :htmx) do |form| %>
 
   <%= render partial: "shared/errors", locals: { task: task } %>
 
   <div class="my-5">
     <%= form.label :title %>
-    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :title %>
   </div>
 
   <div class="my-5">
     <%= form.label :description %>
-    <%= form.text_field :description, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :description %>
   </div>
 
-  <%= form.submit class: "button bg-green-600 hover:bg-green-700 text-white"%>
+  <%= form.submit %>
 
-  <%= link_to "Cancel", tasks_path(variant: :htmx),
-    class: "button ml-2 bg-gray-100 text-gray-500 hover:bg-gray-200 focus:ring-gray-500",
+  <%= form.cancel tasks_path(variant: :htmx),
     data: { hx_push_url: true, hx_select: '#main', hx_target: '#main' },
     preload: 'mouseover' %>
 <% end %>
