@@ -12,6 +12,7 @@ gem "stimulus-rails"
 gem "tailwindcss-rails"
 
 group :development, :test do
+  gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
 end
 
