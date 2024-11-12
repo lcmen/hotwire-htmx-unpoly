@@ -15,4 +15,4 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: <%= ENV.fetch("DATABASE_URL") %>
+  database: <%= ENV["DATABASE_URL"] %>

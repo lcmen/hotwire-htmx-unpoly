@@ -1,4 +1,4 @@
-import Alpine from 'alpinejs';
+import { Alpine } from 'alpinejs';
 import modal from 'components/modal';
 import 'htmx';
 import 'htmx-ext-head-support';
