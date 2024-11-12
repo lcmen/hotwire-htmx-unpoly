@@ -1,0 +1,18 @@
+name: Render
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  restart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Restart Render Service
+        env:
+          api_key: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          curl --request POST \
+            --url https://api.render.com/v1/services/srv-csps0cbv2p9s73buoa00/restart \
+            --header 'accept: application/json' \
+            --header "authorization: Bearer $api_key"
