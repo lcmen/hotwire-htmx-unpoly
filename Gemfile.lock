@@ -138,7 +138,6 @@ GEM
     parser (3.3.5.0)
       ast (~> 2.4.1)
       racc
-    pg (1.5.9)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -271,7 +270,6 @@ PLATFORMS
 DEPENDENCIES
   brakeman
   importmap-rails
-  pg
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.0)
