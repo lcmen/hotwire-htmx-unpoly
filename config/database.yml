@@ -14,4 +14,5 @@ test:
 
 production:
   <<: *default
-  database: storage/database.sqlite3
+  adapter: postgresql
+  database: <%= ENV.fetch("DATABASE_URL") %>
