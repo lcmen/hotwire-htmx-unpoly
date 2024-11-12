@@ -53,3 +53,14 @@ jobs:
       - name: Lint code for consistent style
         run: bin/rubocop -f github
 
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: [ scan_ruby, scan_js, lint ]
+    steps:
+      - name: Deploy to Render
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
+
