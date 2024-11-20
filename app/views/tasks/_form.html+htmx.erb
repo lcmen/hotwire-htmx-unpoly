@@ -1,6 +1,5 @@
 <%= form_with model: task,
   data: { hx_form_method(task) => task_submit_path(task, variant: :htmx),
-          hx_disinherit: 'hx-select hx-target',
           hx_target: 'this',
           hx_select: 'form' },
   url: task_submit_path(task, variant: :htmx) do |form| %>

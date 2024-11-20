@@ -1,5 +1,5 @@
 <%= form_with model: task,
-  html: { 'up-layer': 'root', 'up-target': '#tasks', 'up-select': '#tasks' },
+  html: { 'up-layer': 'root' },
   url: task_submit_path(task, variant: :unpoly) do |form| %>
 
   <%= render partial: "shared/errors", locals: { task: task } %>
