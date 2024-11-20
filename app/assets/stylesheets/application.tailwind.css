@@ -29,3 +29,23 @@ up-modal-box {
 .button:hover {
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer;
 }
+
+.table {
+  @apply table-fixed min-w-full divide-y divide-gray-200;
+}
+
+.table thead {
+  @apply bg-gray-50;
+}
+
+.table th {
+  @apply px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase;
+}
+
+.table tbody {
+  @apply bg-white divide-y divide-gray-200;
+}
+
+.table td {
+  @apply px-6 py-4 whitespace-nowrap text-sm;
+}
