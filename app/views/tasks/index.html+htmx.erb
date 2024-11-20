@@ -14,7 +14,7 @@
       preload: 'mouseover' %>
   </div>
 
-  <table id="tasks" class="table">
+  <table class="table">
     <thead>
       <tr>
         <th class="w-1/12">Status</th>
@@ -70,8 +70,8 @@
               data: {
                 hx_confirm: "Are you sure?",
                 hx_delete: task_path(task, variant: :htmx),
-                hx_select: '#tasks',
-                hx_target: '#tasks',
+                hx_select: '#main',
+                hx_target: '#main',
               } %>
           </td>
         </tr>
