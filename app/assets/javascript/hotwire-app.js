@@ -11,7 +11,7 @@ window.scrollPosition = 0;
 window.Stimulus = application
 
 Turbo.StreamActions.redirect = function () {
-  Turbo.visit(this.target, { shouldCacheSnapshot: false })
+  Turbo.visit(this.target)
 }
 
 document.addEventListener("turbo:before-visit", () => {
