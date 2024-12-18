@@ -23,11 +23,47 @@ up-modal-box {
 }
 
 .button {
-  @apply rounded-md py-3 px-4 border border-transparent font-medium  text-sm leading-4 shadow-sm;
+  @apply inline-block rounded-md py-3 px-4 border border-transparent font-medium  text-sm leading-4 shadow-sm;
 }
 
 .button:hover {
-  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer;
+  @apply cursor-pointer;
+}
+
+.button:focus {
+  @apply outline-none ring-2 ring-offset-2;
+}
+
+.button.blue {
+  @apply text-white bg-indigo-600;
+}
+
+.button.blue:hover {
+  @apply bg-indigo-700;
+}
+
+.button.blue:focus {
+  @apply ring-indigo-500;
+}
+
+.button.green {
+  @apply bg-green-600 text-white;
+}
+
+.button.green:hover {
+  @apply bg-green-700;
+}
+
+.button.red {
+  @apply text-white bg-red-600;
+}
+
+.button.red:hover {
+  @apply bg-red-700;
+}
+
+.button.red:focus {
+  @apply ring-red-500;
 }
 
 .table {
@@ -48,4 +84,20 @@ up-modal-box {
 
 .table td {
   @apply px-6 py-4 whitespace-nowrap text-sm;
+}
+
+.toggle {
+  @apply w-5 h-5 inline-block border rounded-md leading-none text-center text-lg;
+}
+
+.toggle.selected {
+  @apply bg-indigo-100 border-indigo-500;
+}
+
+.toggle.not-selected {
+  @apply bg-white border-gray-300;
+}
+
+.toggle.not-selected:hover {
+  @apply border-indigo-500 bg-indigo-100;
 }

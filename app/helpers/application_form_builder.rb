@@ -4,7 +4,7 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
 
   CANCEL_CLASSES = %w[button ml-2 bg-gray-100 text-gray-500 hover:bg-gray-200 focus:ring-gray-50]
   TEXT_FIELD_CLASSES = %w[block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full].freeze
-  SUBMIT_CLASSES = %w[button bg-green-600 hover:bg-green-700 text-white]
+  SUBMIT_CLASSES = %w[button green]
 
   def cancel(value, url = nil, options = {})
     value, url, options = "Cancel", value, url if url.nil? || url.is_a?(Hash)
