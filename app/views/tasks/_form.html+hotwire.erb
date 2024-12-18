@@ -14,5 +14,5 @@
 
   <%= form.submit %>
 
-  <%= form.cancel tasks_path(variant: :hotwire), data: { action: 'modal#close', turbo_frame: '_top' } %>
+  <%= form.cancel tasks_path(variant: :hotwire), data: { turbo_frame: '_top' } %>
 <% end %>
