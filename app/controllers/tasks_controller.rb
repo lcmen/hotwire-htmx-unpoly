@@ -1,17 +1,32 @@
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
-    fresh_when @tasks
+    respond_to do |format|
+      format.html do |variant|
+        variant.any { fresh_when @tasks }
+        variant.inertia { render inertia: "tasks/index", props: { tasks: @tasks } }
+      end
+    end
   end
 
   def new
     @task = Task.new
-    fresh_when @task
+    respond_to do |format|
+      format.html do |variant|
+        variant.any { fresh_when @task }
+        variant.inertia { render inertia: "tasks/new", props: { task: @task } }
+      end
+    end
   end
 
   def edit
     @task = Task.find(params.expect(:id))
-    fresh_when @task
+    respond_to do |format|
+      format.html do |variant|
+        variant.any { fresh_when @task }
+        variant.inertia { render inertia: "tasks/edit", props: { task: @task } }
+      end
+    end
   end
 
   def create

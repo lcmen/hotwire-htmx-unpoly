@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   default_form_builder ApplicationFormBuilder
   before_action :determine_variant
 
+  inertia_share flash: -> { flash.to_hash }
+
   def index
     render :index, layout: false
   end
@@ -17,8 +19,7 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.html do |variant|
         variant.htmx { htmx_redirect(path, **kwargs) }
-        variant.unpoly { super }
-        variant.none { super }
+        variant.any { super }
       end
       format.turbo_stream { turbo_redirect(path, **kwargs) }
     end
