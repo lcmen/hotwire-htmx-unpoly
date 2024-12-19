@@ -2,7 +2,7 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::UrlHelper
 
-  CANCEL_CLASSES = %w[button ml-2 bg-gray-100 text-gray-500 hover:bg-gray-200 focus:ring-gray-50]
+  CANCEL_CLASSES = %w[button gray]
   TEXT_FIELD_CLASSES = %w[block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full].freeze
   SUBMIT_CLASSES = %w[button green]
 
@@ -20,8 +20,10 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def submit(value = nil, options = {})
-    classes = options.delete(:class)
-    options[:class] = class_names(SUBMIT_CLASSES, classes)
-    super
+    value, options = nil, value if value.is_a?(Hash)
+    classes = Array.wrap(options.delete(:class))
+    options[:class] = (SUBMIT_CLASSES + classes).compact.join(' ')
+    super(value, options)
   end
 end
+

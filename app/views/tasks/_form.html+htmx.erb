@@ -16,9 +16,9 @@
     <%= form.text_field :description %>
   </div>
 
-  <%= form.submit %>
-
+  <%= form.submit class: 'mr-2' %>
   <%= form.cancel tasks_path(variant: :htmx),
     data: { hx_push_url: true, hx_select: '#main', hx_target: '#main' },
     preload: 'mouseover' %>
 <% end %>
+

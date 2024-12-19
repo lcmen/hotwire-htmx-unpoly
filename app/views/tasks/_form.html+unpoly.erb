@@ -14,7 +14,6 @@
     <%= form.text_field :description %>
   </div>
 
-  <%= form.submit %>
-
+  <%= form.submit class: 'mr-2' %>
   <%= form.cancel tasks_path(variant: :unpoly), 'up-dismiss': 'true' %>
 <% end %>
