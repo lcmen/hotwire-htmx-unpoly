@@ -54,6 +54,18 @@ up-modal-box {
   @apply bg-green-700;
 }
 
+.button.gray {
+  @apply bg-gray-100 text-gray-500;
+}
+
+.button.gray:hover {
+  @apply bg-gray-200;
+}
+
+.button.gray:focus {
+  @apply ring-gray-50;
+}
+
 .button.red {
   @apply text-white bg-red-600;
 }
@@ -64,6 +76,10 @@ up-modal-box {
 
 .button.red:focus {
   @apply ring-red-500;
+}
+
+.flash {
+  @apply absolute top-0 right-0 bg-green-50 text-green-500 px-3 py-2 font-medium rounded-lg
 }
 
 .table {

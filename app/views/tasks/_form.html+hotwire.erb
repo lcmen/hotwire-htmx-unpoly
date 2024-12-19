@@ -12,7 +12,6 @@
     <%= form.text_field :description %>
   </div>
 
-  <%= form.submit %>
-
+  <%= form.submit class: 'mr-2' %>
   <%= form.cancel tasks_path(variant: :hotwire), data: { turbo_frame: '_top' } %>
 <% end %>
