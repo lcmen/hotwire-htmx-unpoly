@@ -2,7 +2,7 @@ import { html } from 'utils'
 import { Link, useForm } from '@inertiajs/react'
 
 const TaskForm = ({ task }) => {
-  const { data, setData, patch, post, processing } = useForm({
+  const { data, errors, setData, patch, post, processing } = useForm({
     title: task.title,
     description: task.description,
   })
@@ -19,6 +19,15 @@ const TaskForm = ({ task }) => {
 
   return html`
     <form onSubmit=${submitForm}>
+      ${Object.keys(errors).length > 0 && html`
+        <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+          <h2>${Object.keys(errors).length} error(s) prohibited this task from being saved:</h2>
+          <ul>
+            ${Object.keys(errors).map(key => html`<li>${errors[key]}</li>`)}
+          </ul>
+        </div>
+      `}
+
       <div class="my-5">
         <label for="task_title">Title</label>
         <input

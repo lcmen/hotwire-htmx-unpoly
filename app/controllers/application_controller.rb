@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  alias_method :raw_redirect_to, :redirect_to
+
   allow_browser versions: :modern
   default_form_builder ApplicationFormBuilder
   before_action :determine_variant
