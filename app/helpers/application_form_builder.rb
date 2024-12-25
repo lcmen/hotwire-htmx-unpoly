@@ -22,8 +22,7 @@ class ApplicationFormBuilder < ActionView::Helpers::FormBuilder
   def submit(value = nil, options = {})
     value, options = nil, value if value.is_a?(Hash)
     classes = Array.wrap(options.delete(:class))
-    options[:class] = (SUBMIT_CLASSES + classes).compact.join(' ')
+    options[:class] = (SUBMIT_CLASSES + classes).compact.join(" ")
     super(value, options)
   end
 end
-
