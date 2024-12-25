@@ -82,6 +82,18 @@ up-modal-box {
   @apply absolute top-0 right-0 bg-green-50 text-green-500 px-3 py-2 font-medium rounded-lg
 }
 
+.modal {
+  @apply fixed top-[50vh] -translate-y-1/2 my-0 rounded-lg shadow-100vw bg-white p-5 w-1/2;
+}
+
+.modal[open] {
+  @apply animate-fade-in;
+}
+
+.modal[open][closing] {
+  @apply animate-fade-out;
+}
+
 .table {
   @apply table-fixed min-w-full divide-y divide-gray-200;
 }
