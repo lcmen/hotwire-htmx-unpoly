@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :determine_variant
 
   inertia_share flash: -> { flash.to_hash }
+  inertia_share modal: -> { @modal }
 
   def index
     render :index, layout: false
@@ -15,6 +16,11 @@ class ApplicationController < ActionController::Base
 
   def determine_variant
     request.variant = params[:variant].to_sym if params.key?(:variant)
+  end
+
+  def inertia_modal(modal, props:, background:)
+    @modal = { component: modal, props: props }
+    send(background)
   end
 
   def redirect_to(path, **kwargs)
