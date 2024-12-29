@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
+  alias_method :raw_redirect_to, :redirect_to
+
   allow_browser versions: :modern
   default_form_builder ApplicationFormBuilder
   before_action :determine_variant
+
+  inertia_share flash: -> { flash.to_hash }
+  inertia_share modal: -> { @modal }
 
   def index
     render :index, layout: false
@@ -13,12 +18,16 @@ class ApplicationController < ActionController::Base
     request.variant = params[:variant].to_sym if params.key?(:variant)
   end
 
+  def inertia_modal(modal, props:, background:)
+    @modal = { component: modal, props: props }
+    send(background)
+  end
+
   def redirect_to(path, **kwargs)
     respond_to do |format|
       format.html do |variant|
         variant.htmx { htmx_redirect(path, **kwargs) }
-        variant.unpoly { super }
-        variant.none { super }
+        variant.any { super }
       end
       format.turbo_stream { turbo_redirect(path, **kwargs) }
     end

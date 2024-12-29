@@ -1,17 +1,32 @@
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
-    fresh_when @tasks
+    respond_to do |format|
+      format.html do |variant|
+        variant.any { fresh_when @tasks }
+        variant.inertia { render inertia: "tasks/index", props: { tasks: @tasks } }
+      end
+    end
   end
 
   def new
     @task = Task.new
-    fresh_when @task
+    respond_to do |format|
+      format.html do |variant|
+        variant.any { fresh_when @task }
+        variant.inertia { inertia_modal("tasks/new", props: { task: @task }, background: :index) }
+      end
+    end
   end
 
   def edit
     @task = Task.find(params.expect(:id))
-    fresh_when @task
+    respond_to do |format|
+      format.html do |variant|
+        variant.any { fresh_when @task }
+        variant.inertia { inertia_modal("tasks/edit", props: { task: @task }, background: :index) }
+      end
+    end
   end
 
   def create
@@ -20,7 +35,12 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path, notice: "Task was successfully created.", status: :see_other
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html do |variant|
+          variant.any { render :new, status: :unprocessable_entity }
+          variant.inertia { raw_redirect_to(new_task_url(variant: :inertia), inertia: { errors: @task.errors.full_messages }) }
+        end
+      end
     end
   end
 
@@ -29,7 +49,12 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to tasks_path, notice: "Task was successfully updated.", status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html do |variant|
+          variant.any { render :edit, status: :unprocessable_entity }
+          variant.inertia { raw_redirect_to(edit_task_url(variant: :inertia), inertia: { errors: @task.errors.full_messages }) }
+        end
+      end
     end
   end
 

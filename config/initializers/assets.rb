@@ -4,4 +4,8 @@
 Rails.application.config.assets.version = "1.0"
 
 # Add additional assets to the asset load path.
-# Rails.application.config.assets.paths << Emoji.images_path
+Rails.application.config.assets.paths << Rails.root.join("app", "views")
+
+# Add additional assets to auto-reload when changed.
+Rails.application.config.importmap.cache_sweepers << Rails.root.join("app/assets/javascript")
+Rails.application.config.importmap.cache_sweepers << Rails.root.join("app/views")

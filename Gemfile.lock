@@ -94,6 +94,8 @@ GEM
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
+    inertia_rails (3.6.0)
+      railties (>= 6)
     io-console (0.8.0)
     irb (1.14.3)
       rdoc (>= 4.0.0)
@@ -271,6 +273,7 @@ PLATFORMS
 DEPENDENCIES
   brakeman
   importmap-rails
+  inertia_rails
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.1)
