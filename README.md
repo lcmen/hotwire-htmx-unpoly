@@ -23,3 +23,7 @@ Redirects are made with custom stream action.
 ## Unpoly
 
 No extra code, just configuration for default animations.
+
+## Inertia
+
+Modal is powered by native `dialog` element but it required custom `inertia_share` modal configuration that is not supported by default.
