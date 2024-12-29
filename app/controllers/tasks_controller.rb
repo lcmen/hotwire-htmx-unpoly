@@ -14,7 +14,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html do |variant|
         variant.any { fresh_when @task }
-        variant.inertia { inertia_modal('tasks/new', props: { task: @task }, background: :index) }
+        variant.inertia { inertia_modal("tasks/new", props: { task: @task }, background: :index) }
       end
     end
   end
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html do |variant|
         variant.any { fresh_when @task }
-        variant.inertia { inertia_modal('tasks/edit', props: { task: @task }, background: :index) }
+        variant.inertia { inertia_modal("tasks/edit", props: { task: @task }, background: :index) }
       end
     end
   end
